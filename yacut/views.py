@@ -24,4 +24,4 @@ def index_view():
 
 @app.route('/<string:short>')
 def unique_short(short):
-    return redirect(URLMap.query.filter_by(short=short).first_or_404())
+    return redirect(URLMap.query.filter_by(short=short).first_or_404().original)
