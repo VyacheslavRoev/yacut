@@ -31,6 +31,8 @@ def create_url():
     if not match(r'^[A-Za-z0-9]{1,16}$', data['custom_id']):
         raise InvalidAPIUsage(
             'Указано недопустимое имя для короткой ссылки')
+    if URLMap.query.filter_by(short=data['custom_id']).first() is not None:
+            raise InvalidAPIUsage('Такой адрес уже существует')
     urlmap = URLMap()
     urlmap.from_dict(data)
     db.session.add(urlmap)
