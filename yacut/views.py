@@ -1,8 +1,10 @@
+from flask import flash, redirect, render_template, url_for
+
 from . import app, db
-from flask import render_template, flash, redirect, url_for, abort
 from .forms import YacutForm
 from .models import URLMap
 from .utils import get_unique_short_id
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index_view():
