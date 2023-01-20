@@ -18,7 +18,7 @@ class YacutForm(FlaskForm):
             Regexp(
                 r'^[A-Za-z0-9]+$',
                 message='Можно использовать только латинские буквы и цифры от 0 до 9'
-                ),
+            ),
             Length(1, 16),
             Optional()
         ]

@@ -24,6 +24,7 @@ def index_view():
 
     return render_template('main.html', form=form)
 
+
 @app.route('/<string:short>')
 def unique_short(short):
     return redirect(URLMap.query.filter_by(short=short).first_or_404().original)

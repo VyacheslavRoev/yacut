@@ -13,12 +13,10 @@ class URLMap(db.Model):
 
     def to_dict(self):
         return dict(
-            url = self.original,
-            short_link = url_for('unique_short', short=self.short, _external=True)
+            url=self.original,
+            short_link=url_for('unique_short', short=self.short, _external=True)
         )
-        
 
     def from_dict(self, data):
         setattr(self, 'original', data['url'])
         setattr(self, 'short', data['custom_id'])
-
