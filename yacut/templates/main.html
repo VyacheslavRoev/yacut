@@ -59,7 +59,7 @@
                     Ваша новая ссылка готова
                     <p class="py-3 mb-3">
                     {% for message in messages %}
-                    <a href="{{ form.original_link.data }}"> {{ message }}</a>
+                    <a href="{{ message }}"> {{ message }}</a>
                     {% endfor %}
                   {% endif %}
                 {% endwith %}

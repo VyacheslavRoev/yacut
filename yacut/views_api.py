@@ -26,13 +26,14 @@ def create_url():
     if not match(
             r'^[a-z]+://[^\/\?:]+(:[0-9]+)?(\/.*?)?(\?.*)?$', data['url']):
         raise InvalidAPIUsage('Неправильно указан URL')
-    if 'custom_id' not in data:
+    if not data.get('custom_id'):
         data['custom_id'] = get_unique_short_id()
     if not match(r'^[A-Za-z0-9]{1,16}$', data['custom_id']):
         raise InvalidAPIUsage(
-            'Указано недопустимое имя для короткой ссылки')
+            'Указано недопустимое имя для короткой ссылки'
+        )
     if URLMap.query.filter_by(short=data['custom_id']).first() is not None:
-        raise InvalidAPIUsage('Такой адрес уже существует')
+        raise InvalidAPIUsage(f'Имя "{data["custom_id"]}" уже занято.')
     urlmap = URLMap()
     urlmap.from_dict(data)
     db.session.add(urlmap)

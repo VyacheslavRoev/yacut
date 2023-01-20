@@ -12,7 +12,7 @@ def index_view():
     if form.validate_on_submit():
         short = form.custom_id.data or get_unique_short_id()
         if URLMap.query.filter_by(short=short).first() is not None:
-            flash('Такой адрес уже существует', 'short_error_message')
+            flash(f'Имя {short} уже занято!', 'short_error_message')
             return render_template('main.html', form=form)
         urlmap = URLMap(
             original=form.original_link.data,
