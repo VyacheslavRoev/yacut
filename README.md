@@ -45,7 +45,7 @@ python3 -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 4. В корневой директории создать файл .env с переменными окружения, необходимыми для работы приложения.
-* Пример содержимого файла:
+  * Пример содержимого файла:
 ```
 FLASK_APP=yacut
 FLASK_ENV=development
