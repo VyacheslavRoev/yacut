@@ -14,13 +14,19 @@ def index_view():
         if URLMap.query.filter_by(short=short).first() is not None:
             flash(f'Имя {short} уже занято!', 'short_error_message')
             return render_template('main.html', form=form)
-        urlmap = URLMap(
-            original=form.original_link.data,
-            short=short
-        )
-        db.session.add(urlmap)
-        db.session.commit()
-        flash(url_for('unique_short', short=short, _external=True), 'short_message')
+        try:
+            urlmap = URLMap(
+                original=form.original_link.data,
+                short=short
+            )
+        except Exception:
+            print('Не получилось создать экземпляр класса URLMap.')
+        try:
+            db.session.add(urlmap)
+            db.session.commit()
+            flash(url_for('unique_short', short=short, _external=True), 'short_message')
+        except Exception:
+            print('Не получилось записать данные в базу.')
 
     return render_template('main.html', form=form)
 
